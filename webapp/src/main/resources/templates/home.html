@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3" style="margin-top:40px">
+			<img th:src="${picture}" alt="Profile Picture" class="img-responsive" />
+			<div th:if="${aboutme}">
+				<h3 style="text-decoration:underline">About me:</h3>
+				<p th:utext="${aboutme}"></p>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<div class="panel-group" style="margin-top:40px">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<span th:utext="${userName}"></span>
+					</div>
+					<p class="admin-message-text text-center" th:utext="${userMessage}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="panel-group" style="margin-top:40px">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<span>Edit profile picture</span>
+					</div>
+					<form th:action="@{/upload}" method="POST" enctype="multipart/form-data">
+						<input type="file" name="file" />
+						<br>
+						<input type="submit" value="Upload" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panel-group" style="margin-top:40px">
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<span>Delete profile picture</span>
+					</div>
+					<form th:action="@{/delete}" method="POST">
+						<input type="submit" value="Delete" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+	<div class="row">
+		<div class="panel-group" style="margin-top:40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span>Edit About me</span>
+				</div>
+				<form th:action="@{/aboutme}" method="POST">
+					<input type="text" name="aboutme" maxlength="140" th:value="${aboutme}" />
+					<input type="submit" value="Update" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<form th:action="@{/logout}" method="get">
+				<button class="btn btn-md btn-danger btn-block" name="registration" type="Submit">Logout</button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

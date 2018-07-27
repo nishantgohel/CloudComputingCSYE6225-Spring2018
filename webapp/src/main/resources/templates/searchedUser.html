@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Searched User</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h2>Searched User</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3" style="margin-top:40px">
+                <div th:if="${aboutme}">
+                    <h3 style="text-decoration:underline">About me:</h3>
+                    <p th:utext="${aboutme}"></p>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="panel-group" style="margin-top:40px">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <span th:utext="${userName}"></span>
+                        </div>
+                        <p class="admin-message-text text-center" th:utext="${userMessage}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <form th:action="@{/login}" method="get">
+                <button class="btn btn-md btn-warning btn-block" type="Submit">Back</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
